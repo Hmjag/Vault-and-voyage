@@ -1,82 +1,82 @@
-import { useState } from "react";
+import { useState } from “react”;
 
 const AFFILIATE = {
 skyscanner: {
-label: "Search Flights",
-icon: "✈️",
-url: "https://www.skyscanner.net/",
-signupUrl: "https://www.partners.skyscanner.net/affiliates/affiliate-products",
-commission: "Up to 20% per booking - 30-day cookie",
-note: "Sign up via Impact.com",
+label: “Search Flights”,
+icon: “✈️”,
+url: “https://www.skyscanner.net/”,
+signupUrl: “https://www.partners.skyscanner.net/affiliates/affiliate-products”,
+commission: “Up to 20% per booking - 30-day cookie”,
+note: “Sign up via Impact.com”,
 },
 booking: {
-label: "Find Hotels",
-icon: "🏨",
-url: "https://www.booking.com/",
-signupUrl: "https://www.booking.com/affiliate-program/v2/index.html",
-commission: "4% hotels - 6% car hire",
-note: "Sign up via Awin UK region",
+label: “Find Hotels”,
+icon: “🏨”,
+url: “https://www.booking.com/”,
+signupUrl: “https://www.booking.com/affiliate-program/v2/index.html”,
+commission: “4% hotels - 6% car hire”,
+note: “Sign up via Awin UK region”,
 },
 viator: {
-label: "Book Experiences",
-icon: "🎟️",
-url: "https://www.viator.com/",
-signupUrl: "https://partnerresources.viator.com/",
-commission: "8% per experience - 30-day cookie",
-note: "Sign up at partnerresources.viator.com",
+label: “Book Experiences”,
+icon: “🎟️”,
+url: “https://www.viator.com/”,
+signupUrl: “https://partnerresources.viator.com/”,
+commission: “8% per experience - 30-day cookie”,
+note: “Sign up at partnerresources.viator.com”,
 },
 getyourguide: {
-label: "Tours and Activities",
-icon: "🗺️",
-url: "https://www.getyourguide.com/",
-signupUrl: "https://partner.getyourguide.com/",
-commission: "8-10% per booking - 31-day cookie",
-note: "Sign up via partner.getyourguide.com",
+label: “Tours and Activities”,
+icon: “🗺️”,
+url: “https://www.getyourguide.com/”,
+signupUrl: “https://partner.getyourguide.com/”,
+commission: “8-10% per booking - 31-day cookie”,
+note: “Sign up via partner.getyourguide.com”,
 },
 };
 
 const TRIPS = [
-{ id: 1, emoji: "🇯🇵", name: "Tokyo Explorer", region: "Japan, Asia", tags: ["Culture", "Food", "City"], price: 1850, match: 98, bg: "rgba(220,53,69,0.12)" },
-{ id: 2, emoji: "🇵🇹", name: "Lisbon Escape", region: "Portugal, Europe", tags: ["City Break", "Food", "History"], price: 920, match: 94, bg: "rgba(255,193,7,0.1)" },
-{ id: 3, emoji: "🏝️", name: "Bali Retreat", region: "Indonesia, SE Asia", tags: ["Beach", "Wellness", "Nature"], price: 1400, match: 89, bg: "rgba(40,167,69,0.1)" },
-{ id: 4, emoji: "🇲🇦", name: "Marrakech Magic", region: "Morocco, Africa", tags: ["Culture", "Adventure", "Food"], price: 780, match: 85, bg: "rgba(232,201,126,0.1)" },
-{ id: 5, emoji: "🇮🇸", name: "Iceland Aurora", region: "Iceland, Europe", tags: ["Adventure", "Nature", "Photography"], price: 2200, match: 81, bg: "rgba(0,123,255,0.1)" },
-{ id: 6, emoji: "🇻🇳", name: "Vietnam Discovery", region: "Vietnam, SE Asia", tags: ["Backpacker", "Food", "Culture"], price: 1100, match: 77, bg: "rgba(255,99,132,0.1)" },
+{ id: 1, emoji: “🇯🇵”, name: “Tokyo Explorer”, region: “Japan, Asia”, tags: [“Culture”, “Food”, “City”], price: 1850, match: 98, bg: “rgba(220,53,69,0.12)” },
+{ id: 2, emoji: “🇵🇹”, name: “Lisbon Escape”, region: “Portugal, Europe”, tags: [“City Break”, “Food”, “History”], price: 920, match: 94, bg: “rgba(255,193,7,0.1)” },
+{ id: 3, emoji: “🏝️”, name: “Bali Retreat”, region: “Indonesia, SE Asia”, tags: [“Beach”, “Wellness”, “Nature”], price: 1400, match: 89, bg: “rgba(40,167,69,0.1)” },
+{ id: 4, emoji: “🇲🇦”, name: “Marrakech Magic”, region: “Morocco, Africa”, tags: [“Culture”, “Adventure”, “Food”], price: 780, match: 85, bg: “rgba(232,201,126,0.1)” },
+{ id: 5, emoji: “🇮🇸”, name: “Iceland Aurora”, region: “Iceland, Europe”, tags: [“Adventure”, “Nature”, “Photography”], price: 2200, match: 81, bg: “rgba(0,123,255,0.1)” },
+{ id: 6, emoji: “🇻🇳”, name: “Vietnam Discovery”, region: “Vietnam, SE Asia”, tags: [“Backpacker”, “Food”, “Culture”], price: 1100, match: 77, bg: “rgba(255,99,132,0.1)” },
 ];
 
-const TAGS_FILTER = ["All", "Beach", "City", "Culture", "Adventure", "Food", "Wellness", "Nature"];
+const TAGS_FILTER = [“All”, “Beach”, “City”, “Culture”, “Adventure”, “Food”, “Wellness”, “Nature”];
 
 const AI_RESPONSES = {
-default: "I am Voya, your personal travel concierge! Ask me about destinations, visas, or budgeting.",
-tokyo: "Tokyo is magical year-round! Cherry blossom season (late March to April) is iconic. Budget around 120 GBP per day including accommodation.",
-lisbon: "Lisbon is Europe best value break right now! Spring is ideal. A 5-day trip can be done for under 600 GBP from the UK.",
-bali: "Bali is paradise! Best time is April to October (dry season). No visa needed for UK citizens under 30 days.",
-visa: "For UK travellers: Japan visa-free 90 days. Bali free visa on arrival. Vietnam e-visa around 20 GBP. Morocco visa-free.",
-group: "Group travel tips! Set a shared goal here. Designate a trip lead each day. Book accommodation with communal spaces.",
-budget: "Smart saving tips: Even 50 GBP per month auto-saved adds up to 600 GBP per year. Flying Tuesday to Thursday is 20 to 40 percent cheaper.",
+default: “I am Voya, your personal travel concierge! Ask me about destinations, visas, or budgeting.”,
+tokyo: “Tokyo is magical year-round! Cherry blossom season (late March to April) is iconic. Budget around 120 GBP per day including accommodation.”,
+lisbon: “Lisbon is Europe best value break right now! Spring is ideal. A 5-day trip can be done for under 600 GBP from the UK.”,
+bali: “Bali is paradise! Best time is April to October (dry season). No visa needed for UK citizens under 30 days.”,
+visa: “For UK travellers: Japan visa-free 90 days. Bali free visa on arrival. Vietnam e-visa around 20 GBP. Morocco visa-free.”,
+group: “Group travel tips! Set a shared goal here. Designate a trip lead each day. Book accommodation with communal spaces.”,
+budget: “Smart saving tips: Even 50 GBP per month auto-saved adds up to 600 GBP per year. Flying Tuesday to Thursday is 20 to 40 percent cheaper.”,
 };
 
 function getAIReply(msg) {
 const l = msg.toLowerCase();
-if (l.includes("tokyo") || l.includes("japan")) return AI_RESPONSES.tokyo;
-if (l.includes("lisbon") || l.includes("portugal")) return AI_RESPONSES.lisbon;
-if (l.includes("bali") || l.includes("indonesia")) return AI_RESPONSES.bali;
-if (l.includes("visa")) return AI_RESPONSES.visa;
-if (l.includes("group")) return AI_RESPONSES.group;
-if (l.includes("budget") || l.includes("cheap") || l.includes("save")) return AI_RESPONSES.budget;
+if (l.includes(“tokyo”) || l.includes(“japan”)) return AI_RESPONSES.tokyo;
+if (l.includes(“lisbon”) || l.includes(“portugal”)) return AI_RESPONSES.lisbon;
+if (l.includes(“bali”) || l.includes(“indonesia”)) return AI_RESPONSES.bali;
+if (l.includes(“visa”)) return AI_RESPONSES.visa;
+if (l.includes(“group”)) return AI_RESPONSES.group;
+if (l.includes(“budget”) || l.includes(“cheap”) || l.includes(“save”)) return AI_RESPONSES.budget;
 return AI_RESPONSES.default;
 }
 
 const groupMembers = [
-{ name: "You", emoji: "😎", saved: 460, target: 550, color: "#e8c97e" },
-{ name: "Jamie", emoji: "🧑", saved: 550, target: 550, color: "#4cc864" },
-{ name: "Priya", emoji: "👩", saved: 380, target: 550, color: "#60a5fa" },
-{ name: "Marcus", emoji: "🧔", saved: 450, target: 550, color: "#f472b6" },
+{ name: “You”, emoji: “😎”, saved: 460, target: 550, color: “#e8c97e” },
+{ name: “Jamie”, emoji: “🧑”, saved: 550, target: 550, color: “#4cc864” },
+{ name: “Priya”, emoji: “👩”, saved: 380, target: 550, color: “#60a5fa” },
+{ name: “Marcus”, emoji: “🧔”, saved: 450, target: 550, color: “#f472b6” },
 ];
 
 const initialGoals = [
-{ id: 1, dest: "Tokyo, Japan", type: "Solo Adventure", emoji: "🇯🇵", saved: 1200, target: 1850, group: false },
-{ id: 2, dest: "Lisbon Weekend", type: "Group Trip", emoji: "🇵🇹", saved: 1840, target: 2200, group: true },
+{ id: 1, dest: “Tokyo, Japan”, type: “Solo Adventure”, emoji: “🇯🇵”, saved: 1200, target: 1850, group: false },
+{ id: 2, dest: “Lisbon Weekend”, type: “Group Trip”, emoji: “🇵🇹”, saved: 1840, target: 2200, group: true },
 ];
 
 const css = `
@@ -209,19 +209,19 @@ const css = `
   .deposit-row { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
   `;
 
-const SUGGESTIONS = ["Best time to visit Tokyo?", "Budget trip to Lisbon", "Visa requirements for Bali?", "Group travel tips"];
+const SUGGESTIONS = [“Best time to visit Tokyo?”, “Budget trip to Lisbon”, “Visa requirements for Bali?”, “Group travel tips”];
 
 export default function App() {
-const [tab, setTab] = useState("dashboard");
+const [tab, setTab] = useState(“dashboard”);
 const [goals, setGoals] = useState(initialGoals);
 const [showAdd, setShowAdd] = useState(false);
-const [newGoal, setNewGoal] = useState({ dest: "", type: "solo", target: "", monthly: "" });
+const [newGoal, setNewGoal] = useState({ dest: “”, type: “solo”, target: “”, monthly: “” });
 const [selectedGoal, setSelectedGoal] = useState(null);
-const [filter, setFilter] = useState("All");
-const [messages, setMessages] = useState([{ id: 1, role: "ai", text: "Hey! I am Voya, your travel concierge. Ask me anything about destinations, visas, or budgeting!", time: "Just now" }]);
-const [chatInput, setChatInput] = useState("");
+const [filter, setFilter] = useState(“All”);
+const [messages, setMessages] = useState([{ id: 1, role: “ai”, text: “Hey! I am Voya, your travel concierge. Ask me anything about destinations, visas, or budgeting!”, time: “Just now” }]);
+const [chatInput, setChatInput] = useState(””);
 const [toast, setToast] = useState(null);
-const [depositAmt, setDepositAmt] = useState("");
+const [depositAmt, setDepositAmt] = useState(””);
 
 const showToast = (msg) => { setToast(msg); setTimeout(() => setToast(null), 3000); };
 const totalSaved = goals.reduce((s, g) => s + g.saved, 0);
@@ -229,44 +229,44 @@ const totalTarget = goals.reduce((s, g) => s + g.target, 0);
 
 const addGoal = () => {
 if (!newGoal.dest || !newGoal.target) return;
-setGoals([...goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === "group" ? "Group Trip" : "Solo Adventure", emoji: "🌍", saved: 0, target: parseInt(newGoal.target), group: newGoal.type === "group" }]);
-setNewGoal({ dest: "", type: "solo", target: "", monthly: "" });
+setGoals([…goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === “group” ? “Group Trip” : “Solo Adventure”, emoji: “🌍”, saved: 0, target: parseInt(newGoal.target), group: newGoal.type === “group” }]);
+setNewGoal({ dest: “”, type: “solo”, target: “”, monthly: “” });
 setShowAdd(false);
-showToast("Goal created!");
+showToast(“Goal created!”);
 };
 
 const deposit = (goalId) => {
 const amt = parseInt(depositAmt);
 if (!amt || amt <= 0) return;
-setGoals(goals.map(g => g.id === goalId ? { ...g, saved: Math.min(g.saved + amt, g.target) } : g));
-setDepositAmt("");
-showToast("Added to your goal!");
+setGoals(goals.map(g => g.id === goalId ? { …g, saved: Math.min(g.saved + amt, g.target) } : g));
+setDepositAmt(””);
+showToast(“Added to your goal!”);
 };
 
 const sendMessage = async (text) => {
 const msg = text || chatInput.trim();
 if (!msg) return;
-setChatInput("");
-setMessages(prev => [...prev, { id: Date.now(), role: "user", text: msg, time: "Just now" }]);
+setChatInput(””);
+setMessages(prev => […prev, { id: Date.now(), role: “user”, text: msg, time: “Just now” }]);
 await new Promise(r => setTimeout(r, 1000));
-setMessages(prev => [...prev, { id: Date.now() + 1, role: "ai", text: getAIReply(msg), time: "Just now" }]);
+setMessages(prev => […prev, { id: Date.now() + 1, role: “ai”, text: getAIReply(msg), time: “Just now” }]);
 };
 
-const filteredTrips = filter === "All" ? TRIPS : TRIPS.filter(t => t.tags.includes(filter));
+const filteredTrips = filter === “All” ? TRIPS : TRIPS.filter(t => t.tags.includes(filter));
 
 const milestones = selectedGoal ? [
-{ label: "Goal created", amt: "0 GBP", done: true },
-{ label: "25% milestone", amt: Math.round(selectedGoal.target * 0.25) + " GBP", done: selectedGoal.saved >= selectedGoal.target * 0.25 },
-{ label: "Halfway there!", amt: Math.round(selectedGoal.target * 0.5) + " GBP", done: selectedGoal.saved >= selectedGoal.target * 0.5 },
-{ label: "75% milestone", amt: Math.round(selectedGoal.target * 0.75) + " GBP", done: selectedGoal.saved >= selectedGoal.target * 0.75 },
-{ label: "Goal reached - time to book!", amt: selectedGoal.target + " GBP", done: selectedGoal.saved >= selectedGoal.target },
+{ label: “Goal created”, amt: “0 GBP”, done: true },
+{ label: “25% milestone”, amt: Math.round(selectedGoal.target * 0.25) + “ GBP”, done: selectedGoal.saved >= selectedGoal.target * 0.25 },
+{ label: “Halfway there!”, amt: Math.round(selectedGoal.target * 0.5) + “ GBP”, done: selectedGoal.saved >= selectedGoal.target * 0.5 },
+{ label: “75% milestone”, amt: Math.round(selectedGoal.target * 0.75) + “ GBP”, done: selectedGoal.saved >= selectedGoal.target * 0.75 },
+{ label: “Goal reached - time to book!”, amt: selectedGoal.target + “ GBP”, done: selectedGoal.saved >= selectedGoal.target },
 ] : [];
 
 const TABS = [
-{ id: "dashboard", label: "Dashboard" }, { id: "goals", label: "My Goals" },
-{ id: "trips", label: "Trip Matching" }, { id: "group", label: "Group" },
-{ id: "concierge", label: "Concierge" }, { id: "affiliates", label: "Earn" },
-{ id: "hosting", label: "Go Live" },
+{ id: “dashboard”, label: “Dashboard” }, { id: “goals”, label: “My Goals” },
+{ id: “trips”, label: “Trip Matching” }, { id: “group”, label: “Group” },
+{ id: “concierge”, label: “Concierge” }, { id: “affiliates”, label: “Earn” },
+{ id: “hosting”, label: “Go Live” },
 ];
 
 return (
@@ -274,7 +274,7 @@ return (
 <style>{css}</style>
 <nav className="nav">
 <div className="logo">Vault and Voyage</div>
-<div className="tabs">{TABS.map(t => <button key={t.id} className={"tab" + (tab === t.id ? " active" : "")} onClick={() => setTab(t.id)}>{t.label}</button>)}</div>
+<div className="tabs">{TABS.map(t => <button key={t.id} className={“tab” + (tab === t.id ? “ active” : “”)} onClick={() => setTab(t.id)}>{t.label}</button>)}</div>
 </nav>
 
 ```
@@ -454,54 +454,60 @@ return (
     </div>
   )}
 
-
-{tab === "affiliates" && (
-  <div className="section">
-    <div className="section-title">Affiliate Programmes</div>
-    <div className="section-sub">Sign up to each then paste your personal links into the code</div>
-
-    <div className="info-box">
-      <strong>How it works:</strong> Sign up below. Each programme gives you a unique tracking URL. Replace the placeholder URLs in the code. Every booking a user makes through your app earns you commission paid monthly to your UK bank account.
+  {tab === "affiliates" && (
+    <div className="section">
+      <div className="section-title">Affiliate Programmes</div>
+      <div className="section-sub">Sign up to each then paste your personal links into the code</div>
+      <div className="info-box">
+        <strong>How it works:</strong> Sign up below. Each programme gives you a unique tracking URL. Replace the placeholder URLs in the code. Every booking a user makes through your app earns you commission paid monthly to your UK bank account.
+      </div>
+      <div className="aff-panel">
+        {Object.entries(AFFILIATE).map(([key, aff]) => (
+          <div key={key} className="aff-card">
+            <div className="aff-icon">{aff.icon}</div>
+            <div className="aff-name">{aff.label}</div>
+            <div className="aff-commission">{aff.commission}</div>
+            <div className="aff-note">{aff.note}</div>
+            <a className="aff-signup" href={aff.signupUrl} target="_blank" rel="noopener noreferrer">Sign Up Free</a>
+          </div>
+        ))}
+      </div>
+      <div className="info-box">
+        At <strong>500 active users</strong> with 10% clicking through:<br /><br />
+        Skyscanner: ~15 GBP per month<br />
+        Booking.com: ~240 GBP per month<br />
+        Viator: ~240 GBP per month<br />
+        GetYourGuide: ~150 GBP per month<br /><br />
+        <strong>Total: around 645 GBP per month at 500 users</strong>
+      </div>
     </div>
+  )}
 
-    <div className="aff-panel">
-      {Object.entries(AFFILIATE).map(([key, aff]) => (
-        <div key={key} className="aff-card">
-          <div className="aff-icon">{aff.icon}</div>
-          <div className="aff-name">{aff.label}</div>
-          <div className="aff-commission">{aff.commission}</div>
-          <div className="aff-note">{aff.note}</div>
-          <a className="aff-signup" href={aff.signupUrl} target="_blank" rel="noopener noreferrer">Sign Up Free</a>
-        </div>
-      ))}
+  {tab === "hosting" && (
+    <div className="section">
+      <div className="section-title">Go Live for Free</div>
+      <div className="section-sub">Host your app on the internet in under 30 minutes</div>
+      <div className="steps">
+        {[
+          { num: "Step 1", title: "Download the app file", desc: "Download the VaultAndVoyage.jsx file from this chat and save it on your computer." },
+          { num: "Step 2", title: "Create a free GitHub account", desc: "Go to github.com and sign up free. Create a new repository called vault-and-voyage." },
+          { num: "Step 3", title: "Set up a React project", desc: "Install Node.js from nodejs.org then run these commands:", code: "npx create-react-app vault-and-voyage\ncd vault-and-voyage\nnpm start" },
+          { num: "Step 4", title: "Deploy free on Vercel", desc: "Go to vercel.com and sign up with GitHub. Import your repo and click Deploy. You get a live URL in 60 seconds." },
+          { num: "Step 5", title: "Add your affiliate links", desc: "Replace the placeholder URLs in the AFFILIATE object at the top of App.jsx with your real tracking links." },
+        ].map((s, i) => (
+          <div key={i} className="step-card">
+            <div className="step-num">{s.num}</div>
+            <div className="step-title">{s.title}</div>
+            <div className="step-desc">{s.desc}</div>
+            {s.code && <div className="code-block">{s.code}</div>}
+          </div>
+        ))}
+      </div>
     </div>
+  )}
 
-    <div className="info-box">
-      At <strong>500 active users</strong> with 10% clicking through:<br /><br />
-      Skyscanner: ~15 GBP per month<br />
-      Booking.com: ~240 GBP per month<br />
-      Viator: ~240 GBP per month<br />
-    </div>
+  {toast && <div className="toast">{toast}</div>}
+</div>
 
-    <div className="section-sub">Host your app on the internet in under 30 minutes</div>
-
-    <div className="steps">
-      {[
-        { num: "Step 1", title: "Download the app file", desc: "Download the VaultAndVoyage.jsx file from this chat and save it on your computer." },
-        { num: "Step 2", title: "Create a free GitHub account", desc: "Go to github.com and sign up free. Create a new repository called vault-and-voyage." },
-        { num: "Step 3", title: "Set up a React project", desc: "Install Node.js from nodejs.org then run these commands:", code: "npx create-react-app vault-and-voyage\ncd vault-and-voyage\nnpm start" },
-        { num: "Step 4", title: "Deploy free on Vercel", desc: "Go to vercel.com and sign up with GitHub. Import your repo and click Deploy. You get a live URL in 60 seconds." },
-        { num: "Step 5", title: "Add your affiliate links", desc: "Replace the placeholder URLs in the AFFILIATE object at the top of App.jsx with your real tracking links." },
-      ].map((s, i) => (
-        <div key={i} className="step-card">
-          <div className="step-num">{s.num}</div>
-          <div className="step-title">{s.title}</div>
-          <div className="step-desc">{s.desc}</div>
-          {s.code && <div className="code-block">{s.code}</div>}
-        </div>
-      ))}
-    </div>
-
-    {toast && <div className="toast">{toast}</div>}
-  </div>
-)}
+);
+}
