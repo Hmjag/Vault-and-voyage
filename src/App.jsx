@@ -454,24 +454,7 @@ return (
     </div>
   )}
 
-  {tab === "affiliates" && (
-    <div className="section">
-      <div className="section-title">Affiliate Programmes</div>
-      <div className="section-sub">Sign up to each then paste your personal links into the code</div>
-      <div className="info-box">
-        <strong>How it works:</strong> Sign up below. Each programme gives you a unique tracking URL. Replace the placeholder URLs in the code. Every booking a user makes through your app earns you commission paid monthly to your UK bank account.
-      </div>
-      <div className="aff-panel">
-        {Object.entries(AFFILIATE).map(([key, aff]) => (
-          <div key={key} className="aff-card">
-            <div className="aff-icon">{aff.icon}</div>
-            <div className="aff-name">{aff.label}</div>
-            <div className="aff-commission">{aff.commission}</div>
-            <div className="aff-note">{aff.note}</div>
-            <a className="aff-signup" href={aff.signupUrl} target="_blank" rel="noopener noreferrer">Sign Up Free</a>
-          </div>
-        ))}
-      </div>
+
 {tab === "affiliates" && (
   <div className="section">
     <div className="section-title">Affiliate Programmes</div>
