@@ -472,31 +472,53 @@ return (
           </div>
         ))}
       </div>
-      <div className="info-box">
-        At <strong>500 active users</strong> with 10% clicking through:<br /><br />
-        Skyscanner: ~15 GBP per month<br />
-        Booking.com: ~240 GBP per month<br />
-        Viator: ~240 GBP per month<br />
-<div className="section-sub">Host your app on the internet in under 30 minutes</div>
+{tab === "affiliates" && (
+  <div className="section">
+    <div className="section-title">Affiliate Programmes</div>
+    <div className="section-sub">Sign up to each then paste your personal links into the code</div>
 
-<div className="steps">
-  {[
-    { num: "Step 1", title: "Download the app file", desc: "Download the VaultAndVoyage.jsx file from this chat and save it on your computer." },
-    { num: "Step 2", title: "Create a free GitHub account", desc: "Go to github.com and sign up free. Create a new repository called vault-and-voyage." },
-    { num: "Step 3", title: "Set up a React project", desc: "Install Node.js from nodejs.org then run these commands:", code: "npx create-react-app vault-and-voyage\ncd vault-and-voyage\nnpm start" },
-    { num: "Step 4", title: "Deploy free on Vercel", desc: "Go to vercel.com and sign up with GitHub. Import your repo and click Deploy. You get a live URL in 60 seconds." },
-    { num: "Step 5", title: "Add your affiliate links", desc: "Replace the placeholder URLs in the AFFILIATE object at the top of App.jsx with your real tracking links." },
-  ].map((s, i) => (
-    <div key={i} className="step-card">
-      <div className="step-num">{s.num}</div>
-      <div className="step-title">{s.title}</div>
-      <div className="step-desc">{s.desc}</div>
-      {s.code && <div className="code-block">{s.code}</div>}
+    <div className="info-box">
+      <strong>How it works:</strong> Sign up below. Each programme gives you a unique tracking URL. Replace the placeholder URLs in the code. Every booking a user makes through your app earns you commission paid monthly to your UK bank account.
     </div>
-  ))}
-</div>
 
-{toast && <div className="toast">{toast}</div>}
-</div>
-);
-}
+    <div className="aff-panel">
+      {Object.entries(AFFILIATE).map(([key, aff]) => (
+        <div key={key} className="aff-card">
+          <div className="aff-icon">{aff.icon}</div>
+          <div className="aff-name">{aff.label}</div>
+          <div className="aff-commission">{aff.commission}</div>
+          <div className="aff-note">{aff.note}</div>
+          <a className="aff-signup" href={aff.signupUrl} target="_blank" rel="noopener noreferrer">Sign Up Free</a>
+        </div>
+      ))}
+    </div>
+
+    <div className="info-box">
+      At <strong>500 active users</strong> with 10% clicking through:<br /><br />
+      Skyscanner: ~15 GBP per month<br />
+      Booking.com: ~240 GBP per month<br />
+      Viator: ~240 GBP per month<br />
+    </div>
+
+    <div className="section-sub">Host your app on the internet in under 30 minutes</div>
+
+    <div className="steps">
+      {[
+        { num: "Step 1", title: "Download the app file", desc: "Download the VaultAndVoyage.jsx file from this chat and save it on your computer." },
+        { num: "Step 2", title: "Create a free GitHub account", desc: "Go to github.com and sign up free. Create a new repository called vault-and-voyage." },
+        { num: "Step 3", title: "Set up a React project", desc: "Install Node.js from nodejs.org then run these commands:", code: "npx create-react-app vault-and-voyage\ncd vault-and-voyage\nnpm start" },
+        { num: "Step 4", title: "Deploy free on Vercel", desc: "Go to vercel.com and sign up with GitHub. Import your repo and click Deploy. You get a live URL in 60 seconds." },
+        { num: "Step 5", title: "Add your affiliate links", desc: "Replace the placeholder URLs in the AFFILIATE object at the top of App.jsx with your real tracking links." },
+      ].map((s, i) => (
+        <div key={i} className="step-card">
+          <div className="step-num">{s.num}</div>
+          <div className="step-title">{s.title}</div>
+          <div className="step-desc">{s.desc}</div>
+          {s.code && <div className="code-block">{s.code}</div>}
+        </div>
+      ))}
+    </div>
+
+    {toast && <div className="toast">{toast}</div>}
+  </div>
+)}
