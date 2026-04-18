@@ -229,7 +229,7 @@ const totalTarget = goals.reduce((s, g) => s + g.target, 0);
 
 const addGoal = () => {
 if (!newGoal.dest || !newGoal.target) return;
-setGoals([…goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === "group" ? "Group Trip" : "Solo Adventure", emoji: "🌍", saved: 0, target: parseInt(newGoal.target), group: newGoal.type === "group" }]);
+setGoals([. . .goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === "group" ? "Group Trip" : "Solo Adventure", emoji: "🌍", saved: 0, target: parseInt(newGoal.target), group: newGoal.type === "group" }]);
 setNewGoal({ dest: "", type: "solo", target: "", monthly: "" });
 setShowAdd(false);
 showToast("Goal created!");
@@ -238,7 +238,7 @@ showToast("Goal created!");
 const deposit = (goalId) => {
 const amt = parseInt(depositAmt);
 if (!amt || amt <= 0) return;
-setGoals(goals.map(g => g.id === goalId ? { …g, saved: Math.min(g.saved + amt, g.target) } : g));
+setGoals(goals.map(g => g.id === goalId ? { . . .g, saved: Math.min(g.saved + amt, g.target) } : g));
 setDepositAmt("");
 showToast("Added to your goal!");
 };
@@ -247,9 +247,9 @@ const sendMessage = async (text) => {
 const msg = text || chatInput.trim();
 if (!msg) return;
 setChatInput("");
-setMessages(prev => […prev, { id: Date.now(), role: "user", text: msg, time: "Just now" }]);
+setMessages(prev => [. . .prev, { id: Date.now(), role: "user", text: msg, time: "Just now" }]);
 await new Promise(r => setTimeout(r, 1000));
-setMessages(prev => […prev, { id: Date.now() + 1, role: "ai", text: getAIReply(msg), time: "Just now" }]);
+setMessages(prev => [. . .prev, { id: Date.now() + 1, role: "ai", text: getAIReply(msg), time: "Just now" }]);
 };
 
 const filteredTrips = filter === "All" ? TRIPS : TRIPS.filter(t => t.tags.includes(filter));
@@ -339,12 +339,12 @@ return (
         <div className="form-box">
           <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 18 }}>Create New Goal</div>
           <div className="form-row">
-            <div className="form-group"><label className="form-label">Destination</label><input className="form-input" placeholder="e.g. Tokyo, Japan" value={newGoal.dest} onChange={e => setNewGoal({ ...newGoal, dest: e.target.value })} /></div>
-            <div className="form-group"><label className="form-label">Trip Type</label><select className="form-input" value={newGoal.type} onChange={e => setNewGoal({ ...newGoal, type: e.target.value })}><option value="solo">Solo Adventure</option><option value="group">Group Trip</option><option value="couple">Couple Escape</option><option value="family">Family Holiday</option></select></div>
+            <div className="form-group"><label className="form-label">Destination</label><input className="form-input" placeholder="e.g. Tokyo, Japan" value={newGoal.dest} onChange={e => setNewGoal({ . . .newGoal, dest: e.target.value })} /></div>
+            <div className="form-group"><label className="form-label">Trip Type</label><select className="form-input" value={newGoal.type} onChange={e => setNewGoal({ . . .newGoal, type: e.target.value })}><option value="solo">Solo Adventure</option><option value="group">Group Trip</option><option value="couple">Couple Escape</option><option value="family">Family Holiday</option></select></div>
           </div>
           <div className="form-row">
-            <div className="form-group"><label className="form-label">Target (GBP)</label><input className="form-input" type="number" placeholder="e.g. 2000" value={newGoal.target} onChange={e => setNewGoal({ ...newGoal, target: e.target.value })} /></div>
-            <div className="form-group"><label className="form-label">Monthly Save (GBP)</label><input className="form-input" type="number" placeholder="e.g. 200" value={newGoal.monthly} onChange={e => setNewGoal({ ...newGoal, monthly: e.target.value })} /></div>
+            <div className="form-group"><label className="form-label">Target (GBP)</label><input className="form-input" type="number" placeholder="e.g. 2000" value={newGoal.target} onChange={e => setNewGoal({ . . .newGoal, target: e.target.value })} /></div>
+            <div className="form-group"><label className="form-label">Monthly Save (GBP)</label><input className="form-input" type="number" placeholder="e.g. 200" value={newGoal.monthly} onChange={e => setNewGoal({ . . .newGoal, monthly: e.target.value })} /></div>
           </div>
           <div className="form-actions"><button className="btn btn-gold" onClick={addGoal}>Create Goal</button><button className="btn btn-outline" onClick={() => setShowAdd(false)}>Cancel</button></div>
         </div>
@@ -447,7 +447,7 @@ return (
           ))}
         </div>
         <div className="chat-input-row">
-          <input className="chat-input" placeholder="Ask Voya anything..." value={chatInput} onChange={e => setChatInput(e.target.value)} onKeyDown={e => e.key === "Enter" && sendMessage()} />
+          <input className="chat-input" placeholder="Ask Voya anything. . ." value={chatInput} onChange={e => setChatInput(e.target.value)} onKeyDown={e => e.key === "Enter" && sendMessage()} />
           <button className="chat-send" onClick={() => sendMessage()}>↑</button>
         </div>
       </div>
