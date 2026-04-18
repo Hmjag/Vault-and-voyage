@@ -29,7 +29,7 @@ getyourguide: {
 label: "Tours and Activities",
 icon: "🗺️",
 url: "https://www.getyourguide.com/",
-signupUrl: "https://partner.getyourguide.com/",
+signupUrl: "https://www.getyourguide.agency?cmp=referral_L8OKEG9",
 commission: "8-10% per booking - 31-day cookie",
 note: "Sign up via partner.getyourguide.com",
 },
