@@ -238,7 +238,7 @@ showToast("Goal created!");
 const deposit = (goalId) => {
 const amt = parseInt(depositAmt);
 if (!amt || amt <= 0) return;
-setGoals(goals.map(g => g.id === goalId ? { . . .g, saved: Math.min(g.saved + amt, g.target) } : g));
+setGoals(goals.map(g => g.id === goalId ? { ...g, saved: Math.min(g.saved + amt, g.target) } : g));
 setDepositAmt("");
 showToast("Added to your goal!");
 };
