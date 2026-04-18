@@ -238,7 +238,7 @@ showToast("Goal created!");
 const deposit = (goalId) => {
 const amt = parseInt(depositAmt);
 if (!amt || amt <= 0) return;
-setGoals(goals.map(g => g.id === goalId ? { …g, saved: Math.min(g.saved + amt, g.target) } : g));
+setGoals(goals.map(g => g.id === goalId ? { ...g, saved: Math.min(g.saved + amt, g.target) } : g));
 setDepositAmt("");
 showToast("Added to your goal!");
 };
@@ -247,9 +247,9 @@ const sendMessage = async (text) => {
 const msg = text || chatInput.trim();
 if (!msg) return;
 setChatInput("");
-setMessages(prev => […prev, { id: Date.now(), role: "user", text: msg, time: "Just now" }]);
+setMessages(prev => [...prev, { id: Date.now(), role: "user", text: msg, time: "Just now" }]);
 await new Promise(r => setTimeout(r, 1000));
-setMessages(prev => […prev, { id: Date.now() + 1, role: "ai", text: getAIReply(msg), time: "Just now" }]);
+setMessages(prev => [...prev, { id: Date.now() + 1, role: "ai", text: getAIReply(msg), time: "Just now" }]);
 };
 
 const filteredTrips = filter === "All" ? TRIPS : TRIPS.filter(t => t.tags.includes(filter));
