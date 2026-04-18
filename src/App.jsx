@@ -229,7 +229,7 @@ const totalTarget = goals.reduce((s, g) => s + g.target, 0);
 
 const addGoal = () => {
 if (!newGoal.dest || !newGoal.target) return;
-setGoals([…goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === "group" ? "Group Trip" : "Solo Adventure", emoji: "🌍", saved: 0, target: parseInt(newGoal.target), group: newGoal.type === "group" }]);
+setGoals([...goals, { id: Date.now(), dest: newGoal.dest, type: newGoal.type === "group" ? "Group Trip" : "Solo Adventure", emoji: "🌍", saved: 0, target: parseInt(newGoal.target), group: newGoal.type === "group" }]);
 setNewGoal({ dest: "", type: "solo", target: "", monthly: "" });
 setShowAdd(false);
 showToast("Goal created!");
