@@ -477,21 +477,26 @@ return (
         Skyscanner: ~15 GBP per month<br />
         Booking.com: ~240 GBP per month<br />
         Viator: ~240 GBP per month<br />
-        GetYourGuide: ~150 GBP per month<br /><br />
-        <strong>Total: around 645 GBP per month at 500 users</strong>
-      </div>
-    </div>
-  )}
+<div className="section-sub">Host your app on the internet in under 30 minutes</div>
 
-  {tab === "hosting" && (
-    <div className="section">
-      <div className="section-title">Go Live for Free</div>
-      <div className="section-sub">Host your app on the internet in under 30 minutes</div>
-      </div>
+<div className="steps">
+  {[
+    { num: "Step 1", title: "Download the app file", desc: "Download the VaultAndVoyage.jsx file from this chat and save it on your computer." },
+    { num: "Step 2", title: "Create a free GitHub account", desc: "Go to github.com and sign up free. Create a new repository called vault-and-voyage." },
+    { num: "Step 3", title: "Set up a React project", desc: "Install Node.js from nodejs.org then run these commands:", code: "npx create-react-app vault-and-voyage\ncd vault-and-voyage\nnpm start" },
+    { num: "Step 4", title: "Deploy free on Vercel", desc: "Go to vercel.com and sign up with GitHub. Import your repo and click Deploy. You get a live URL in 60 seconds." },
+    { num: "Step 5", title: "Add your affiliate links", desc: "Replace the placeholder URLs in the AFFILIATE object at the top of App.jsx with your real tracking links." },
+  ].map((s, i) => (
+    <div key={i} className="step-card">
+      <div className="step-num">{s.num}</div>
+      <div className="step-title">{s.title}</div>
+      <div className="step-desc">{s.desc}</div>
+      {s.code && <div className="code-block">{s.code}</div>}
     </div>
-  )}
+  ))}
+</div>
 
-  {toast && <div className="toast">{toast}</div>}
+{toast && <div className="toast">{toast}</div>}
 </div>
 );
 }
